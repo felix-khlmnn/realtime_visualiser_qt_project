@@ -17,8 +17,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QMenu,
-    QMenuBar, QSizePolicy, QStatusBar, QVBoxLayout,
-    QWidget)
+    QMenuBar, QSizePolicy, QSpacerItem, QStatusBar,
+    QVBoxLayout, QWidget)
+
+from chartwidget import ChartWidget
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -35,8 +37,27 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
+        self.chartWidget = ChartWidget(self.centralwidget)
+        self.chartWidget.setObjectName(u"chartWidget")
+        self.chartWidget.setMinimumSize(QSize(600, 400))
+        self.chartWidget.setMaximumSize(QSize(600, 400))
+
+        self.horizontalLayout.addWidget(self.chartWidget)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_2)
+
 
         self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -63,6 +84,9 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.actionHistogrammdatei_laden.setText(QCoreApplication.translate("MainWindow", u"Histogrammdatei laden", None))
         self.actionProgramm_beenden.setText(QCoreApplication.translate("MainWindow", u"Programm beenden", None))
+#if QT_CONFIG(shortcut)
+        self.actionProgramm_beenden.setShortcut("")
+#endif // QT_CONFIG(shortcut)
         self.menuDatei.setTitle(QCoreApplication.translate("MainWindow", u"Datei", None))
     # retranslateUi
 
