@@ -71,4 +71,7 @@ class DataParser:
         self.parsedData.compute_averages()
         self.parsedData.compute_standard_deviations()
 
+        print(self.parsedData.averageLatencies)
+        print(self.parsedData.standardDeviations)
+
         return 0

@@ -1,6 +1,5 @@
 # This Python file uses the following encoding: utf-8
-from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QVBoxLayout, QWidget, QPushButton
+from PySide6.QtWidgets import QVBoxLayout, QWidget
 from PySide6.QtCharts import QChart, QLineSeries, QChartView, QValueAxis, QLogValueAxis
 from PySide6.QtGui import QPainter
 
@@ -32,11 +31,6 @@ class ChartWidget(QWidget):
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.chart_view)
         self.setLayout(self.layout)
-
-        # Add a clear button
-        self.clear_button = QPushButton("Clear Graph")
-        self.clear_button.clicked.connect(self.clearGraph)
-        self.layout.addWidget(self.clear_button)
 
         # Axis setup
         self.axisX = QValueAxis()

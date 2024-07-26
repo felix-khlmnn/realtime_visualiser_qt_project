@@ -16,12 +16,15 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QHeaderView, QMainWindow,
-    QMenu, QMenuBar, QSizePolicy, QSpacerItem,
-    QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QHBoxLayout, QHeaderView,
+    QListWidgetItem, QMainWindow, QMenu, QMenuBar,
+    QSizePolicy, QSpacerItem, QStatusBar, QTabWidget,
+    QTableWidgetItem, QVBoxLayout, QWidget)
 
 from chartwidget import ChartWidget
+from inputline import InputLine
+from measurementinformationtable import MeasurementInformationTable
+from outputlist import OutputList
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -38,49 +41,89 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
-
-        self.verticalLayout_5 = QVBoxLayout()
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(-1, -1, 10, -1)
-        self.tableWidget_2 = QTableWidget(self.centralwidget)
-        self.tableWidget_2.setObjectName(u"tableWidget_2")
-
-        self.verticalLayout_5.addWidget(self.tableWidget_2)
-
-
-        self.horizontalLayout.addLayout(self.verticalLayout_5)
-
         self.chartWidget = ChartWidget(self.centralwidget)
         self.chartWidget.setObjectName(u"chartWidget")
         self.chartWidget.setMinimumSize(QSize(600, 400))
-        self.chartWidget.setMaximumSize(QSize(600, 400))
+        self.chartWidget.setMaximumSize(QSize(2000, 2000))
+        self.chartWidget.setAutoFillBackground(False)
 
         self.horizontalLayout.addWidget(self.chartWidget)
 
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(10, 0, 0, -1)
-        self.measurementInformationTable = QTableWidget(self.centralwidget)
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_4.addItem(self.verticalSpacer_2)
+
+        self.measurementInformationTable = MeasurementInformationTable(self.centralwidget)
         self.measurementInformationTable.setObjectName(u"measurementInformationTable")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.measurementInformationTable.sizePolicy().hasHeightForWidth())
+        self.measurementInformationTable.setSizePolicy(sizePolicy)
+        self.measurementInformationTable.setMinimumSize(QSize(250, 150))
+        self.measurementInformationTable.setMaximumSize(QSize(300, 150))
         self.measurementInformationTable.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.measurementInformationTable.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.measurementInformationTable.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.measurementInformationTable.setAlternatingRowColors(False)
+        self.measurementInformationTable.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.measurementInformationTable.setShowGrid(True)
+        self.measurementInformationTable.setCornerButtonEnabled(False)
 
         self.verticalLayout_4.addWidget(self.measurementInformationTable)
 
 
         self.horizontalLayout.addLayout(self.verticalLayout_4)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.multiTabWidget = QTabWidget(self.centralwidget)
+        self.multiTabWidget.setObjectName(u"multiTabWidget")
+        self.multiTabWidget.setMaximumSize(QSize(16777215, 300))
+        self.multiTabWidget.setTabPosition(QTabWidget.TabPosition.South)
+        self.multiTabWidget.setTabShape(QTabWidget.TabShape.Rounded)
+        self.multiTabWidget.setElideMode(Qt.TextElideMode.ElideNone)
+        self.multiTabWidget.setDocumentMode(False)
+        self.multiTabWidget.setTabsClosable(False)
+        self.multiTabWidget.setMovable(False)
+        self.multiTabWidget.setTabBarAutoHide(False)
+        self.abfrage = QWidget()
+        self.abfrage.setObjectName(u"abfrage")
+        self.horizontalLayout_2 = QHBoxLayout(self.abfrage)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.verticalLayout_5 = QVBoxLayout()
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.outputList = OutputList(self.abfrage)
+        self.outputList.setObjectName(u"outputList")
+        font = QFont()
+        font.setFamilies([u"Consolas"])
+        self.outputList.setFont(font)
+
+        self.verticalLayout_5.addWidget(self.outputList)
+
+        self.inputLine = InputLine(self.abfrage)
+        self.inputLine.setObjectName(u"inputLine")
+        self.inputLine.setFont(font)
+        self.inputLine.setClearButtonEnabled(False)
+
+        self.verticalLayout_5.addWidget(self.inputLine)
+
+
+        self.horizontalLayout_2.addLayout(self.verticalLayout_5)
+
+        self.multiTabWidget.addTab(self.abfrage, "")
+
+        self.verticalLayout.addWidget(self.multiTabWidget)
+
+        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
@@ -102,6 +145,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.multiTabWidget.setCurrentIndex(0)
+
+
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
@@ -112,6 +158,8 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(shortcut)
         self.actionProgramm_beenden.setShortcut("")
 #endif // QT_CONFIG(shortcut)
+        self.inputLine.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Befehl eingeben", None))
+        self.multiTabWidget.setTabText(self.multiTabWidget.indexOf(self.abfrage), QCoreApplication.translate("MainWindow", u"Abfrage", None))
         self.menuDatei.setTitle(QCoreApplication.translate("MainWindow", u"Datei", None))
     # retranslateUi
 

@@ -55,7 +55,15 @@ class ParsedCyclictestData:
             self.maximumLatencies.insert(processor, maximum_latency)
 
     def clear(self):
+        """
+        Clears the datatype so it can be reused
+        """
         self.values = []
+        self.minimumLatencies = []
+        self.maximumLatencies = []
+        self.averageLatencies = []
+        self.standardDeviations = []
+
 
     def compute_averages(self):
         number_of_processors = len(self.values[0])

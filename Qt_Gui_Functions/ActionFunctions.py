@@ -10,10 +10,13 @@ from Charts.chartdata import ChartData
 
 from chartwidget import ChartWidget
 
+from measurementinformationtable import MeasurementInformationTable
+
 class ActionFunctions:
 
-    def __init__(self, chartWidget: ChartWidget):
+    def __init__(self, chartWidget: ChartWidget, measurementInformationTable: MeasurementInformationTable):
         self.chartWidget = chartWidget
+        self.measurementInformationTable = measurementInformationTable
 
 
     # Programm beenden
@@ -55,6 +58,13 @@ class ActionFunctions:
 
             # Set the chart display to the converted data
             self.chartWidget.displaySeries(chartData.getChartDataSeries())
+
+            # Update the table data
+            self.measurementInformationTable.updateValue(0, 0, parsedData.maximumLatencies)
+            self.measurementInformationTable.updateValue(0, 1, parsedData.minimumLatencies)
+            self.measurementInformationTable.updateValue(0, 2, parsedData.averageLatencies)
+            self.measurementInformationTable.updateValue(0, 3, parsedData.standardDeviations)
+
 
         except FileNotFoundError:
             # The user cancelled the file selection, return an empty string
