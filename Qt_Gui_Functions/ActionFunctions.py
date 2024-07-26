@@ -4,21 +4,15 @@ from PySide6.QtWidgets import QFileDialog
 
 from HelperFunctions import DebugTools
 
-from Middleware.FileSelection_To_DataParser import FileSelection_To_DataParser
-
 from Parsing.dataparser import DataParser
 
-from Charts.ChartData import ChartData
+from Charts.chartdata import ChartData
 
 from chartwidget import ChartWidget
 
 class ActionFunctions:
 
-    def __init__(self, fileSelection_To_DataParser: FileSelection_To_DataParser, chartWidget: ChartWidget):
-        # Middleware that connects our load histogram function to the dataparser
-        # Use the same as the main script
-        self.fileSelection_To_DataParser = fileSelection_To_DataParser
-
+    def __init__(self, chartWidget: ChartWidget):
         self.chartWidget = chartWidget
 
 
@@ -30,6 +24,7 @@ class ActionFunctions:
         """
         Loads a histogram file and starts parsing
         """
+
         file_information = QFileDialog.getOpenFileName(None, "Histogrammdatei laden", "C:\\Users\\kuhlmannf\\Documents\\Hochschule_Lokal\\GPY")
 
         # The file name is stored at the first index of the file_information tuple
@@ -48,10 +43,15 @@ class ActionFunctions:
             parsedData = dataParser.get_data()
             # Put the data inside of the chart
             chartData = ChartData(parsedData.values)
+            print("Length of parsed data:", len(parsedData.values[0]))
+            print("Length of chart data:", len(chartData.chartDataSeries))
+
             maxValues = parsedData.maximumLatencies
             minValues = parsedData.minimumLatencies
 
             chartData.convertHistogramDataToDataSeries(maxValues, minValues)
+
+            self.chartWidget.clearGraph()
 
             # Set the chart display to the converted data
             self.chartWidget.displaySeries(chartData.getChartDataSeries())

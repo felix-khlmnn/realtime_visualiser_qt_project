@@ -16,9 +16,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QMainWindow, QMenu,
-    QMenuBar, QSizePolicy, QSpacerItem, QStatusBar,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QHeaderView, QMainWindow,
+    QMenu, QMenuBar, QSizePolicy, QSpacerItem,
+    QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 from chartwidget import ChartWidget
 
@@ -41,12 +42,36 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
+        self.verticalLayout_5 = QVBoxLayout()
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.verticalLayout_5.setContentsMargins(-1, -1, 10, -1)
+        self.tableWidget_2 = QTableWidget(self.centralwidget)
+        self.tableWidget_2.setObjectName(u"tableWidget_2")
+
+        self.verticalLayout_5.addWidget(self.tableWidget_2)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_5)
+
         self.chartWidget = ChartWidget(self.centralwidget)
         self.chartWidget.setObjectName(u"chartWidget")
         self.chartWidget.setMinimumSize(QSize(600, 400))
         self.chartWidget.setMaximumSize(QSize(600, 400))
 
         self.horizontalLayout.addWidget(self.chartWidget)
+
+        self.verticalLayout_4 = QVBoxLayout()
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(10, 0, 0, -1)
+        self.measurementInformationTable = QTableWidget(self.centralwidget)
+        self.measurementInformationTable.setObjectName(u"measurementInformationTable")
+        self.measurementInformationTable.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.measurementInformationTable.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
+        self.verticalLayout_4.addWidget(self.measurementInformationTable)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_4)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 

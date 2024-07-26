@@ -14,9 +14,18 @@ class DataParser:
     # Constructor
     def __init__(self, file_path):
         self.filePath = file_path
-        self.parsedData = dt.ParsedCyclictestData()
+
+
+        # Run the parser
+        self.read_file()
+        if self.parse_data() < 0:
+            print("Error with file format")
 
     def read_file(self) -> None:
+        print("READING NEW FILE")
+        # Clear parsed data beforehand
+        self.fileData = []
+        self.parsedData = dt.ParsedCyclictestData()
         try:
             latency_file = open(self.filePath, "r")
 
@@ -32,6 +41,8 @@ class DataParser:
         return self.parsedData
 
     def parse_data(self):
+        # Reset the values array
+        self.parsedData.clear()
         # Test whether we are trying to parse valid histogram data
         if not self.fileData[0].startswith("# Histogram"):
             return -1
@@ -51,7 +62,13 @@ class DataParser:
                 self.parsedData.values.insert(current_index, current_values)
 
         # Continue computing the statistical data from those functions
+        print("LENGTH FILE DATA:", len(self.fileData))
+        print(len(self.parsedData.values))
+        #print(self.parsedData.values)
+
         self.parsedData.compute_minimum_latency()
         self.parsedData.compute_maximum_latency()
         self.parsedData.compute_averages()
         self.parsedData.compute_standard_deviations()
+
+        return 0

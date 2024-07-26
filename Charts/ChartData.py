@@ -21,6 +21,9 @@ class ChartData:
 
 
     def convertHistogramDataToDataSeries(self, maxValues: list[int], minValues: list[int]):
+        # Clear the chart data series
+        self.chartDataSeries = []
+
         # Add as many empty series objects as there are processors
         # This can again be determined by the length of the first list in the histogram data
         count_of_processors = len(self.histogramData[0])
@@ -30,7 +33,7 @@ class ChartData:
         for processor in range(count_of_processors):
             self.chartDataSeries.insert(processor, QLineSeries())
             # Set the name
-            self.chartDataSeries[processor].setName(f"Processor {processor}")
+            self.chartDataSeries[processor].setName(f"Prozessor {processor}")
 
             # self.chartDataSeries[i].append(10, 1)
             # self.chartDataSeries[i].append(20, 10)
@@ -50,7 +53,7 @@ class ChartData:
                     print("MAX")
                     self.chartDataSeries[processor].append(index, 1)
 
-                # Optimisation
+                # Leave out the latencies that are never hit, as a logarithmic scale can't display 0
                 if latency_of_current_processor == 0:
                     continue
 

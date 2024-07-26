@@ -3,7 +3,6 @@
         "Charts/ChartData.py",
         "HelperFunctions/DebugTools.py",
         "HelperFunctions/TerminalColors.py",
-        "Middleware/FileSelection_To_DataParser.py",
         "Parsing/dataparser.py",
         "Parsing/datatypes.py",
         "Qt_Gui_Functions/ActionFunctions.py",

@@ -54,8 +54,13 @@ class ParsedCyclictestData:
             maximum_latency = total_count_of_datasets - temporary_maximum
             self.maximumLatencies.insert(processor, maximum_latency)
 
+    def clear(self):
+        self.values = []
+
     def compute_averages(self):
         number_of_processors = len(self.values[0])
+
+        print("Number of processors:", number_of_processors)
 
         for processor in range(number_of_processors):
 
@@ -64,6 +69,7 @@ class ParsedCyclictestData:
             processor_latencies = []
 
             for index, entry in enumerate(self.values):
+                #print(entry)
                 indices.append(index)
                 processor_latencies.append(entry[processor])
 
