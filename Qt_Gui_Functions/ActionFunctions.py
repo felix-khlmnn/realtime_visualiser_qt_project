@@ -12,15 +12,18 @@ from chartwidget import ChartWidget
 
 from measurementinformationtable import MeasurementInformationTable
 
+from inputline import InputLine
 from outputlist import OutputList
 
 class ActionFunctions:
 
+    inputLine : InputLine = None
     outputList : OutputList = None
 
-    def __init__(self, chartWidget: ChartWidget, measurementInformationTable: MeasurementInformationTable, outputList):
+    def __init__(self, chartWidget: ChartWidget, measurementInformationTable: MeasurementInformationTable, inputLine, outputList):
         self.chartWidget = chartWidget
         self.measurementInformationTable = measurementInformationTable
+        self.inputLine = inputLine
         self.outputList = outputList
 
 
@@ -40,16 +43,16 @@ class ActionFunctions:
 
         try:
             DebugTools.debugPrint("Loading the following file", file_name)
-            self.outputList.printToOut("Attempting to load the following histogram file:", file_name)
+            self.outputList.printToOut("Versuche, die folgende Histogrammdatei zu laden:", file_name)
 
             dataParser = DataParser(file_path=file_name)
 
             # Start the read and parse workflow
             # TODO: Refactor into init!
             if (dataParser.read_file()):
-                self.outputList.printToOut("ERROR: Could not read file.")
+                self.outputList.printToOut("ERROR: Datei konnte nicht gelesen werden.")
             if (dataParser.parse_data()):
-                self.outputList.printToOut("ERROR: File is not in valid format.")
+                self.outputList.printToOut("ERROR: Datei entspricht nicht dem korrekten Dateiformat.")
 
             parsedData = dataParser.get_data()
             # Put the data inside of the chart
@@ -72,6 +75,9 @@ class ActionFunctions:
             self.measurementInformationTable.updateValue(0, 1, parsedData.minimumLatencies)
             self.measurementInformationTable.updateValue(0, 2, parsedData.averageLatencies)
             self.measurementInformationTable.updateValue(0, 3, parsedData.standardDeviations)
+
+            # Hand the parsed data to the inputline so it can be inspected
+            self.inputLine.setCurrentCyclictestData(parsedData)
 
         except FileNotFoundError:
             # The user cancelled the file selection, return an empty string

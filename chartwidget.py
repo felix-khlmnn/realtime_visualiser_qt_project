@@ -41,7 +41,7 @@ class ChartWidget(QWidget):
         self.axisX.setLabelFormat("%d")
         self.axisX.setMax(self.defaultMaxX)
         self.axisX.setMin(0)
-        self.axisX.setTitleText("Latenz in us")
+        self.axisX.setTitleText("Latenz in \u00B5s")
 
         # Configure the Y-axis
         self.axisY.setBase(10.0)

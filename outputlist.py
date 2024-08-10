@@ -7,7 +7,7 @@ class OutputList(QListWidget):
 
     def printToOut(self, *args):
         """
-        Takes an arbitrary number of arguments, just like print.
+        Takes an arbitrary number of arguments, just like print. Composed text has to be precomposed though.
         """
         outStr = ""
 

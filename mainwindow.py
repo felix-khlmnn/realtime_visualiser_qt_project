@@ -9,12 +9,16 @@ from ui_mainwindow import Ui_MainWindow
 from Qt_Gui_Functions.ActionFunctions import ActionFunctions
 
 class MainWindow(QMainWindow, Ui_MainWindow):
+    applicationName: str = "Realtime Latency Visualiser v1.0"
+
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)  # Setup the UI
 
 
-        self.actionFunctions = ActionFunctions(self.chartWidget, self.measurementInformationTable, self.outputList)
+        self.actionFunctions = ActionFunctions(self.chartWidget, self.measurementInformationTable, self.inputLine, self.outputList)
+
+        self.writeWelcomeMessage()
 
         # Connect the actions to their respective functions
         self.actionProgramm_beenden.triggered.connect(self.actionFunctions.programmBeenden)
@@ -22,6 +26,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Set up the input output system
         self.inputLine.setOutputList(self.outputList)
+
+    def writeWelcomeMessage(self):
+        self.outputList.printToOut(f"Willkommen zu {self.applicationName}!\nBitte wählen Sie eine Histogrammdatei aus, um mit der Analyse zu beginnen.")
 
 if __name__ == "__main__":
     app = QApplication([])
