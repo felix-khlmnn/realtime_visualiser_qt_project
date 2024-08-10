@@ -1,6 +1,7 @@
 # This Python file uses the following encoding: utf-8
 import sys
-from PySide6.QtWidgets import QFileDialog
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QFileDialog, QMessageBox
 
 from HelperFunctions import DebugTools
 
@@ -15,10 +16,14 @@ from measurementinformationtable import MeasurementInformationTable
 from inputline import InputLine
 from outputlist import OutputList
 
+from helpwindow import HelpWindow
+
 class ActionFunctions:
 
     inputLine : InputLine = None
     outputList : OutputList = None
+
+    helpWindow : HelpWindow = None
 
     def __init__(self, chartWidget: ChartWidget, measurementInformationTable: MeasurementInformationTable, inputLine, outputList):
         self.chartWidget = chartWidget
@@ -84,3 +89,16 @@ class ActionFunctions:
             self.outputList.printToOut("ERROR: No file selected or file not found.")
             DebugTools.debugPrint("No file selected")
             self.fileSelection_To_DataParser.histogramData = ""
+
+    def hilfeAnzeigen(self):
+        self.helpWindow = HelpWindow()
+        self.helpWindow.show()
+
+    def ueberAnzeigen(self):
+        ueberMessageBox = QMessageBox()
+        ueberMessageBox.setIcon(QMessageBox.Information)
+        # Set the text format in order to allow styling in message box
+        ueberMessageBox.setTextFormat(Qt.MarkdownText)
+        ueberMessageBox.setText("## Realtime Latency Visualiser v1.0\nProgrammiert von Felix Kuhlmann")
+        ueberMessageBox.setWindowTitle("Über Realtime Latency Visualiser")
+        ueberMessageBox.exec()

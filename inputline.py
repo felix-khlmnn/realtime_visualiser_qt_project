@@ -55,7 +55,7 @@ class InputLine(QLineEdit):
             case "show":
                 # Disable this command if no data is present
                 if self.currentCyclictestData is None:
-                    self.outputList.printToOut("Es wurde kein Histogramm geladen, bitte laden Sie erst ein Datei über die UI")
+                    self.outputList.printToOut("Es wurde kein Histogramm geladen, bitte laden Sie erst eine Datei über die UI")
                     return
                 # Check if a positional argument was given
                 if len(splitCmd) != 2:

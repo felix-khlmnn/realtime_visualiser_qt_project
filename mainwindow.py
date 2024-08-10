@@ -23,6 +23,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Connect the actions to their respective functions
         self.actionProgramm_beenden.triggered.connect(self.actionFunctions.programmBeenden)
         self.actionHistogrammdatei_laden.triggered.connect(self.actionFunctions.histogrammDateiLaden)
+        self.actionHilfe_anzeigen.triggered.connect(self.actionFunctions.hilfeAnzeigen)
+        self.action_ueber_Realtime_Latency_Visualiser.triggered.connect(self.actionFunctions.ueberAnzeigen)
 
         # Set up the input output system
         self.inputLine.setOutputList(self.outputList)

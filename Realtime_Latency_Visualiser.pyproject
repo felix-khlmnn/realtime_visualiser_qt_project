@@ -7,6 +7,8 @@
         "Parsing/datatypes.py",
         "Qt_Gui_Functions/ActionFunctions.py",
         "chartwidget.py",
+        "helpwindow.py",
+        "helpwindow.ui",
         "inputline.py",
         "mainwindow.py",
         "mainwindow.ui",

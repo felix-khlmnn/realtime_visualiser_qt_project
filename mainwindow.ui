@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Realtime Latency Visualiser</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -231,8 +231,8 @@
     <property name="title">
      <string>Hilfe</string>
     </property>
-    <addaction name="actionHilfsdokument_anzeigen"/>
-    <addaction name="action_ber_Realtime_Latency_Visualiser"/>
+    <addaction name="actionHilfe_anzeigen"/>
+    <addaction name="action_ueber_Realtime_Latency_Visualiser"/>
    </widget>
    <addaction name="menuDatei"/>
    <addaction name="menuHilfe"/>
@@ -257,15 +257,18 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionHilfsdokument_anzeigen">
+  <action name="actionHilfe_anzeigen">
    <property name="text">
-    <string>Hilfsdokument anzeigen</string>
+    <string>Hilfe anzeigen</string>
+   </property>
+   <property name="toolTip">
+    <string>Hilfe anzeigen</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
    </property>
   </action>
-  <action name="action_ber_Realtime_Latency_Visualiser">
+  <action name="action_ueber_Realtime_Latency_Visualiser">
    <property name="icon">
     <iconset theme="QIcon::ThemeIcon::DialogInformation"/>
    </property>
