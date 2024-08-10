@@ -34,7 +34,8 @@ class MeasurementInformationTable(QTableWidget):
 
         newString = ''
         for value in values:
-            newString += f"{value:.3f}" + "\t"
+            # Only put decimal places if there is a decimal value
+            newString += f"{value:.3f}\t" if value % 1 else f"{value:.0f}\t"
 
         try:
             itemToBeUpdated.setText(newString)

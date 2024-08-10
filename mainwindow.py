@@ -14,7 +14,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)  # Setup the UI
 
 
-        self.actionFunctions = ActionFunctions(self.chartWidget, self.measurementInformationTable)
+        self.actionFunctions = ActionFunctions(self.chartWidget, self.measurementInformationTable, self.outputList)
 
         # Connect the actions to their respective functions
         self.actionProgramm_beenden.triggered.connect(self.actionFunctions.programmBeenden)

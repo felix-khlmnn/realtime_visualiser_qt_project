@@ -21,7 +21,7 @@ class DataParser:
         if self.parse_data() < 0:
             print("Error with file format")
 
-    def read_file(self) -> None:
+    def read_file(self) -> int:
         print("READING NEW FILE")
         # Clear parsed data beforehand
         self.fileData = []
@@ -33,6 +33,7 @@ class DataParser:
             for line in latency_file:
                 # Clean the lines from trailing whitespace etc
                 self.fileData.append(line.strip())
+            return 0
         except FileNotFoundError:
             return -1
 

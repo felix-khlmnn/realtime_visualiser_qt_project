@@ -12,11 +12,16 @@ from chartwidget import ChartWidget
 
 from measurementinformationtable import MeasurementInformationTable
 
+from outputlist import OutputList
+
 class ActionFunctions:
 
-    def __init__(self, chartWidget: ChartWidget, measurementInformationTable: MeasurementInformationTable):
+    outputList : OutputList = None
+
+    def __init__(self, chartWidget: ChartWidget, measurementInformationTable: MeasurementInformationTable, outputList):
         self.chartWidget = chartWidget
         self.measurementInformationTable = measurementInformationTable
+        self.outputList = outputList
 
 
     # Programm beenden
@@ -35,13 +40,16 @@ class ActionFunctions:
 
         try:
             DebugTools.debugPrint("Loading the following file", file_name)
+            self.outputList.printToOut("Attempting to load the following histogram file:", file_name)
 
             dataParser = DataParser(file_path=file_name)
 
             # Start the read and parse workflow
             # TODO: Refactor into init!
-            dataParser.read_file()
-            dataParser.parse_data()
+            if (dataParser.read_file()):
+                self.outputList.printToOut("ERROR: Could not read file.")
+            if (dataParser.parse_data()):
+                self.outputList.printToOut("ERROR: File is not in valid format.")
 
             parsedData = dataParser.get_data()
             # Put the data inside of the chart
@@ -65,8 +73,8 @@ class ActionFunctions:
             self.measurementInformationTable.updateValue(0, 2, parsedData.averageLatencies)
             self.measurementInformationTable.updateValue(0, 3, parsedData.standardDeviations)
 
-
         except FileNotFoundError:
             # The user cancelled the file selection, return an empty string
+            self.outputList.printToOut("ERROR: No file selected or file not found.")
             DebugTools.debugPrint("No file selected")
             self.fileSelection_To_DataParser.histogramData = ""

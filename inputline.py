@@ -45,11 +45,11 @@ class InputLine(QLineEdit):
 
         match splitCmd[0]:
             case "show":
-                self.showValue(int(splitCmd[1]))
+                self.showValue(splitCmd[1])
             case "exit":
                 sys.exit(0)
 
 
 
-    def showValue(self, index: int):
-        self.outputList.printToOut("\tShowing value(s) at index", index)
+    def showValue(self, discriminator: str):
+        self.outputList.printToOut("\tShowing value(s) at index", discriminator)
