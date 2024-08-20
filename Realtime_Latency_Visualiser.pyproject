@@ -1,6 +1,6 @@
 {
     "files": [
-        "Charts/ChartData.py",
+        "Charts/chartdata.py",
         "HelperFunctions/DebugTools.py",
         "HelperFunctions/TerminalColors.py",
         "Parsing/dataparser.py",

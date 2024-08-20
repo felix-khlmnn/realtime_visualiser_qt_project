@@ -71,8 +71,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.measurementInformationTable.sizePolicy().hasHeightForWidth())
         self.measurementInformationTable.setSizePolicy(sizePolicy)
-        self.measurementInformationTable.setMinimumSize(QSize(250, 150))
-        self.measurementInformationTable.setMaximumSize(QSize(300, 150))
+        self.measurementInformationTable.setMinimumSize(QSize(300, 150))
+        self.measurementInformationTable.setMaximumSize(QSize(350, 150))
         self.measurementInformationTable.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.measurementInformationTable.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.measurementInformationTable.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
@@ -85,10 +85,6 @@ class Ui_MainWindow(object):
 
 
         self.horizontalLayout.addLayout(self.verticalLayout_4)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -138,7 +134,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1000, 25))
+        self.menubar.setGeometry(QRect(0, 0, 1000, 21))
         self.menuDatei = QMenu(self.menubar)
         self.menuDatei.setObjectName(u"menuDatei")
         self.menuHilfe = QMenu(self.menubar)
