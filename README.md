@@ -28,3 +28,7 @@ Anschließend wird das Programm mit dem folgenden Befehl gestartet:
 |start.bat|./start.sh|
 
 Falls unter Linux das Programm nicht starten sollte, weil die Datei nicht ausführbar ist, sollte man den entsprechenden Filemode einstellen.
+
+## Daten visualisieren
+
+In dem Ordner "Testdaten" liegen Histogramme verschiedener Versuche, mit verschiedener Messwertzahl und verschiedenen Kernel-Versionen, auf denen die Daten erhoben wurden.
